@@ -83,6 +83,10 @@ mod tests {
     use super::*;
     use crate::tfhe::config::LWE_CONFIG;
 
+    /**
+     * Test LWE encryption and decryption and ensure noise is centered at 0 and
+     * has a standard deviation close to the configured noise standard deviation.
+     */
     #[test]
     fn test_lwe() {
         let config = LWE_CONFIG;
@@ -95,9 +99,9 @@ mod tests {
             let plaintext = lwe_encode(rand::thread_rng().gen_range(-4..4));
             let ciphertext = lwe_encrypt(plaintext.clone(), key.clone());
             let decrypted = lwe_decrypt(ciphertext, key.clone());
-            let noise = decrypted.message.wrapping_sub(plaintext.message);
-            assert_eq!(lwe_decode(plaintext), lwe_decode(decrypted));
+            assert_eq!(lwe_decode(plaintext.clone()), lwe_decode(decrypted.clone()));
 
+            let noise = decrypted.message.wrapping_sub(plaintext.message);
             noise_samples.push(noise);
         }
 
