@@ -8,6 +8,10 @@ I have been following the wonderful guide at https://www.daniellowengrub.com/blo
 
 This tutorial builds a NAND gate, which I'm hoping to build a full adder and a uint8 comparator with. I may write up a guide on how to do that.
 
+### Running tests
+
+- The initial LWE encrypt/decrypt tests: `cargo test --package fheathon --lib -- tfhe::lwe::tests::test_lwe --exact --show-output`
+
 ## BFV
 
 I will be implementing BFV e2e next. There is no wonderful guide to follow (AFAIK) so I will be doing a mix of following implementations by Janmajaya (https://github.com/Janmajayamall/bfv) and Lattigo (https://github.com/tuneinsight/lattigo).
